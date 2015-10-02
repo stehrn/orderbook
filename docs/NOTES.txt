@@ -1,0 +1,44 @@
+
+
++ AppRunner
+Modified to use new FeedOrders functional interface and no longer refs AppXMLFeedsEnvironmentImpl
+
++ AppEnvironmentImpl
+Made non abstract
+feedOrders() method replaced with new FeedOrders functional interface, passed into constructor
+Class no longer needs to be extended to be used
+
++ XMLOrderParser
+Constructor takes OrderEventHandler (AppXMLFeedsEnvironmentImpl was too wide)
+Creation of Orders moved to OrderFactory
+startElement method simplified
+
++ OrderFactory
+New class to create Orders, it definitely promotes 'open for extension' and use of higher order functions...
+
++ AppXMLFeedsEnvironmentImpl
+Deleted, replaced with new FeedOrders functional interface as alternative to inheritance
+
++ Action
+get method added to get by name
+
++ FeedOrders
+New functional interface
+Name not great
+
++ OrderBook
+New interface
+2 types, OrderBookByOrder & OrderBookBySymbol
+
++ OrderConsumer
+pulled out method to consume orders into new functional interface (OrderEventHandler)
+
++ OrderType
+New enum - tells us if bid/ask
+
+Other items:
+Get rid of custom Log code, we dont need to write our own log, use existing API - java util logging for now.
+Set log level via config, not code (we never want to change code just to change log level :))
+
+
+
